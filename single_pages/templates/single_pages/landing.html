@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Jinlock</title>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'single_pages/css/landing.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/44050dae9e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% include 'blog/navbar.html' %}
+
+    <section>
+        <div class="row justify-content-between">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4 text-light">
+                <h1 class="mt-5" style="font-weight: bold">Jinlock Choi</h1>
+                <p>Welcome to Jinlock's Blog :)</p>
+            </div>
+            <div class="col-lg-4 mt-5">
+                <h2 class="text-light" style="font-weight: bold; margin-bottom: 10px">Blog - Recent posts</h2>
+                {% for post in recent_posts %}
+                    <div class="card mt-1">
+                        <div class="card-body">
+                            <h6><a href="{{ post.get_absolute_url }}" class="text-decoration-none text-dark" style="font-weight: bold">{{ post.title }}</a></h6>
+                            <span class="badge bg-secondary badge-light float-end">
+                                <img class="mr-1 rounded-circle" width="20px" src="{{ post.get_avatar_url }}" alt="{{ post.author }}">
+                                {{ post.author.username }}
+                                &nbsp;
+                                &nbsp;
+                                {{ post.created_at }}
+                            </span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </section>
+
+    <div class="fixed-bottom">
+        {% include 'blog/footer.html' %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>
